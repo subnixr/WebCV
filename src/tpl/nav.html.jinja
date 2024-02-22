@@ -1,0 +1,50 @@
+{% import 'icon.html.jinja' as icon%}
+{% import 'flag.html.jinja' as flag%}
+{% macro new(modal) %}
+{% set modalCss = '-modal' if modal else '' %}
+{% set modalClose = 'data-modal-close' if modal else '' %}
+<nav class="nav {{modalCss}}" data-component="nav">
+    <ol class="nav__links">
+        <li>
+            <a href="#skills" data-navlink {{modalClose}} aria-label="{{__.nav.skills_aria_label}}">
+                {{__.nav.skills}}
+            </a>
+        </li>
+        <li>
+            <a href="#experiences" data-navlink {{modalClose}} aria-label="{{__.nav.experiences_aria_label}}">
+                {{__.nav.experiences}}
+            </a>
+        </li>
+        <li>
+            <a href="#education" data-navlink {{modalClose}} aria-label="{{__.nav.education_aria_label}}">
+                {{__.nav.education}}
+            </a>
+        </li>
+    </ol>
+
+    <div class="nav__settings">
+        <button
+            class="nav__settings-cta"
+            type="button"
+            {{modalClose}}
+            data-component="modal-open"
+            data-modal-target="settings"
+            aria-label="{{__.nav.settings_aria_label}}"
+        >
+            {{icon.new('gear')}}
+        </button>
+
+        <ul class="nav__langs">
+            {% for lang in langs %}
+                {% if lang != page.lang %}
+                    <li>
+                        <a class="{{'-current' if page.lang == lang else ''}}" href="/{{lang}}">
+                            {{flag.new(lang)}}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</nav>
+{% endmacro %}

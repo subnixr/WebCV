@@ -1,0 +1,261 @@
+@use '../layout/config' as boot;
+@use '../layout/colors';
+@use '../layout/typography' as typo;
+@use '../layout/animations' as anim;
+@use '../layout/print' as print;
+
+.header {
+    @include anim.default;
+
+    --img-size: 100%;
+
+    --grid-template-columns: auto 1fr;
+    --grid-template-rows: repeat(5, auto) 1fr;
+    --grid-template-areas:
+        'img      img'
+        'linkedin name'
+        'github   title'
+        '.        address'
+        '.        build'
+        'nav      nav';
+
+    --title-font-size: var(--fs-500);
+    --title-height: 52px;
+    --title-opacity: 1;
+    --address-height: 48px;
+    --address-opacity: 1;
+
+    display: grid;
+    height: 100%;
+
+    align-items: center;
+    
+    grid-template-columns: var(--grid-template-columns);
+    grid-template-rows: var(--grid-template-rows);
+    grid-template-areas: var(--grid-template-areas);
+
+    row-gap: var(--p-m);
+    column-gap: var(--p-m);
+    padding: var(--p-m);
+
+    &__nav {
+        @include print.hide;
+
+        grid-area: nav;
+        align-self: stretch;
+
+        &.--mobile {
+            display: none;
+            .icon {
+                ---icon-size: var(--ics-social);
+            }
+        }
+
+        @include boot.screenTo(tablet) {
+            &.--mobile {
+                display: block;
+            }
+            &.--desktop {
+                display: none;
+            }
+        }
+    }
+
+    &__nav-cta {
+        @include typo.cta;
+        background: transparent;
+        border: none;
+    }
+
+    &__img-wrapper {
+        grid-area: img;
+        margin-bottom: var(--p-xl);
+        align-self: self-start;
+
+        @include boot.screenTo(tablet) {
+            margin-bottom: 0;
+        }
+
+        @include boot.print {
+            margin-bottom: 0;
+        }
+    }
+
+    &__img {
+        @include anim.default;
+
+        display: block;
+        width: 100%;
+        border-radius: var(--br-round);
+
+        border: var(--bo-deco-xs);
+
+        @include boot.screenTo(tablet) {
+            width: var(--img-size);
+            height: var(--img-size);
+        }
+    }
+
+    &__social {
+        @include typo.cta;
+
+        display: block;
+
+        width: var(--ics-social);
+        height: var(--ics-social);
+
+        align-self: center;
+        justify-self: center;
+
+        &.-linkedin {
+            grid-area: linkedin;
+        }
+
+        &.-github {
+            grid-area: github;
+        }
+
+        .icon {
+            @include print.hide;
+            ---icon-size: var(--ics-social);
+            border-radius: 50%;
+        }
+
+        @include boot.print {
+            width: 100%;
+            height: auto;
+            font-size: var(--fs-300);
+        }
+    }
+
+    &__name {
+        @include typo.title;
+        font-size: var(--fs-800);
+        margin-bottom: 0;
+        grid-area: name;
+
+        @include boot.screenTo(tablet) {
+            align-self: self-end;
+        }
+
+        @include boot.theme('neon') {
+            color: var(--c-primary);
+        }
+    }
+
+    &__title {
+        @include anim.default;
+        @include typo.subtitle;
+
+        font-size: var(--title-font-size);
+        margin-bottom: 0;
+        grid-area: title;
+        height: var(--title-height);
+        opacity: var(--title-opacity);
+
+        @include boot.screenTo(tablet) {
+            align-self: self-start;
+        }
+    }
+
+    &__address {
+        @include anim.default;
+        @include typo.hint;
+
+        margin-bottom: 0;
+        grid-area: address;
+        height: var(--address-height);
+        opacity: var(--address-opacity);
+
+        @include boot.screenTo(tablet) {
+            align-self: self-start;
+        }
+    }
+
+    &__buildstamp {
+        @include anim.default;
+        @include typo.hint;
+
+        grid-area: build;
+        text-transform: uppercase;
+        margin-bottom: var(--m-l);
+        height: var(--address-height);
+        opacity: var(--address-opacity);
+
+        @include boot.screenTo(tablet) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        @include boot.print {
+            margin-bottom: 0;
+            justify-self: center;
+        }
+    }
+
+    & > * {
+        overflow: hidden;
+    }
+
+    @include boot.screenTo(tablet) {
+        --address-height: 32px;
+
+        --img-size: var(--sz-propic);
+
+        --grid-template-columns: var(--sz-propic) auto auto 1fr auto;
+        --grid-template-rows: 32px 32px var(--title-height) var(--address-height);
+        --grid-template-areas:
+            'img   linkedin github  .       nav'
+            'img   name     name    name    nav'
+            'img   title    title   title   title'
+            'build address  address address address';
+
+        row-gap: var(--p-s);
+        padding: var(--p-s) var(--p-m);
+
+    }
+
+    @include boot.print {
+        --img-size: var(--sz-propic);
+
+        --grid-template-columns: var(--sz-propic) auto;
+        --grid-template-rows: repeat(6, auto);
+        --grid-template-areas:
+            'img name'
+            'img title'
+            'img address'
+            'img linkedin'
+            'build github';
+
+        --title-font-size: var(--fs-400);
+        --title-height: auto;
+        --address-height: auto;
+
+        column-gap: var(--p-xl);
+    }
+}
+
+.layout.-slim .header {
+    @include boot.screenTo(tablet) {
+        --img-size: var(--sz-propic-slim);
+
+        --grid-template-columns: var(--sz-propic-slim) auto auto 1fr auto;
+        --grid-template-rows: 32px 32px 0 0;
+
+        --title-font-size: var(--fs-400);
+        --title-height: 0;
+        --title-opacity: 0;
+        --address-height: 0;
+        --address-opacity: 0;
+        --buildstamp-height: 0;
+
+        align-items: center;
+
+        &__name {
+            align-self: center;
+        }
+    }
+}
+

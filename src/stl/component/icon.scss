@@ -1,0 +1,9 @@
+.icon {
+    display: inline-block;
+    width: var(---icon-size);
+    height: var(---icon-size);
+
+    &.-flag {
+        border-radius: 50%;
+    }
+}

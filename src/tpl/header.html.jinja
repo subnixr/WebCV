@@ -1,0 +1,46 @@
+{% import 'nav.html.jinja' as nav %}
+{% import 'icon.html.jinja' as icon %}
+{% macro new(profile) -%}
+<header class="header">
+    <picture class="header__img-wrapper">
+        {% if (profile.image.mobile) %}
+        <source media="(max-width:768px)" srcset="{{profile.image.mobile}}">
+        {% endif %}
+        <img class="header__img" src="{{profile.image.desktop}}" alt="{{profile.imageAlt}}">
+    </picture>
+    <a
+        class="header__social -linkedin"
+        href="{{profile.linkedin}}"
+        target="_blank"
+        aria-label="{{__.header.linkedin_aria_label}}"
+    >
+        {{icon.new('linkedin')}}
+    </a>
+    <a
+        class="header__social -github"
+        href="{{profile.github}}"
+        target="_blank"
+        aria-label="{{__.header.github_aria_label}}"
+    >
+        {{icon.new('github')}}
+    </a>
+    <h1 class="header__name">{{profile.name}}</h1>
+    <h2 class="header__title">{{profile.title}}</h2>
+    <span class="header__address">{{profile.address}}</span>
+    <div class="header__buildstamp">{{env.buildstamp}}</div>
+    <div class="header__nav --desktop">
+        {{nav.new()}}
+    </div>
+    <div class="header__nav --mobile">
+        <button
+            class="header__nav-cta"
+            type="button"
+            data-component="modal-open"
+            data-modal-target="mobile-nav"
+            aria-label="{{__.header.mobile_menu_aria_label}}"
+        >
+            {{icon.new('menu')}}
+        </button>
+    </div>
+</header>
+{%- endmacro %}

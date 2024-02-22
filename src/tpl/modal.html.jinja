@@ -1,0 +1,31 @@
+{% import 'icon.html.jinja' as icon %}
+{# TODO: passare data-attr #}
+{% macro include(
+    name,
+    class,
+    content,
+    ariaLabel = ''
+) -%}
+<div
+    class="modal {{class}}"
+    data-component="modal"
+    data-modal-name="{{name}}"
+    role="dialog"
+    aria-label="{{ariaLabel}}"
+    aria-expanded="false"
+>
+    <div class="modal__backdrop" data-modal-close>
+        <div class="modal__window" data-modal-window>
+            <button
+                class="modal__close-cta"
+                type="button"
+                data-modal-close
+                aria-label="{{__.modal.close_aria_label}}"
+            >
+                {{icon.new('close')}}
+            </button>
+            <div class="modal__content">{{content}}</div>
+        </div>
+    </div>
+</div>
+{%- endmacro %}

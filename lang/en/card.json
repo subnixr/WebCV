@@ -1,0 +1,15 @@
+{
+    "github_aria_label": "Github",
+    "languages": {
+        "en": "English",
+        "es": "Spanish",
+        "it": "Italian",
+        "listen_aria_label": "Listening",
+        "read_aria_label": "Reading",
+        "speak_aria_label": "Oral Production",
+        "write_aria_label": "Written Production"
+    },
+    "linkedin_aria_label": "LinkedIn",
+    "ranked_aria_label": "Visit",
+    "title_aria_label": "Go to site"
+}

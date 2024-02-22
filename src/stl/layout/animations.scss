@@ -1,0 +1,29 @@
+@use './config' as boot;
+
+@mixin default {
+    transition: all 300ms ease-in-out;
+}
+
+[data-animate] {
+    transition: all 150ms ease-in-out;
+    transform: translateX(calc(-1 * var(--m-l)));
+    opacity: 0.25;
+
+    @include boot.print {
+        opacity: 1;
+        transform: none;
+    }
+
+    &[data-animate="in"] {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    &[data-animate="out"] {
+        opacity: 0;
+
+        @include boot.print {
+            opacity: 1;
+        }
+    }
+}

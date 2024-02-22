@@ -1,0 +1,137 @@
+{% import 'icon.html.jinja' as icon %}
+{% import 'flag.html.jinja' as flag %}
+{% macro new(
+    class,
+    eyelet,
+    title,
+    subtitle,
+    hint,
+    content,
+    richText,
+    url,
+    thumbnail,
+    thumbnailAlt,
+    linkedin,
+    github
+) -%}
+<article class="card {{class}}" data-animate>
+    <div class="card__wrapper">
+        {% if (eyelet) %}
+            <span class="card__eyelet">{{eyelet}}</span>
+        {% endif %}
+        {% if (title or subtitle or hint or thumbnail) %}
+            <div class="card__head">
+                {% if (thumbnail) %}
+                    <figure class="card__thumbnail">
+                        <img src="{{thumbnail}}" alt="{{thumbnailAlt}}">
+                    </figure>
+                {% endif %}
+                {% if (linkedin) %}
+                    <a
+                        class="card__linkedin"
+                        href="{{linkedin}}"
+                        target="_blank"
+                        aria-label="{{__.card.linkedin_aria_label}}"
+                    >
+                        {{icon.new('linkedin')}}
+                    </a>
+                {% endif %}
+                {% if (title) %}
+                    {% if (url) %} 
+                        <a
+                            class="card__title-wrapper"
+                            href="{{url}}"
+                            target="_blank"
+                            aria-label="{{__.card.title_aria_label}}"
+                        >
+                    {% else %}
+                        <div class="card__title-wrapper">
+                    {% endif %}
+                            <h1 class="card__title">
+                                <span>{{title}}</span>
+                                {% if (url) %}
+                                    {{icon.new('external-link')}}
+                                {% endif %}
+                            </h1>
+                    {% if (url) %} 
+                        </a>
+                    {% else %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% if (subtitle) %}
+                    <h2 class="card__subtitle">{{subtitle}}</h2>
+                {% endif %}
+                {% if (hint) %}
+                    <h3 class="card__hint">{{hint}}</h3>
+                {% endif %}
+            </div>
+            <hr class="card__separator">
+        {% endif %}
+        {% if (content or richText) %}
+            <div class="card__content">
+                {% if richText %}
+                    <div class="card__rich-text">{{richText}}</div>
+                {% else %}
+                    {{content}}
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</article>
+{%- endmacro %}
+
+{% macro listContent(items = []) -%}
+<ul class="card__list">
+    {% for item in items %}
+        {% set hasUrlCss = '-has-url' if item.url else '' %}
+        <li class="card__list-item {{hasUrlCss}}" data-rank="{{item.rank}}">
+            {% if item.url %}
+                <a href="{{item.url}}" target="_blank" aria-label="{{__.card.ranked_aria_label}} {{item.label}}">
+            {% endif %}
+            {{item.label}}
+            {% if item.url %}
+                {{icon.new('external-link')}}
+                </a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{%- endmacro%}
+
+{% macro languageContent(languages) -%}
+<table class="card__langs">
+    <thead>
+        <tr class="card__langs__headrow">
+            <th class="card__langs__colgroup-end"></th>
+            <th aria-label="{{__.card.languages.listen_aria_label}}">{{icon.new('listen')}}</th>
+            <th aria-label="{{__.card.languages.speak_aria_label}}" class="card__langs__colgroup-end">{{icon.new('speak')}}</th>
+            <th aria-label="{{__.card.languages.read_aria_label}}">{{icon.new('read')}}</th>
+            <th aria-label="{{__.card.languages.write_aria_label}}">{{icon.new('write')}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lang in languages %}
+        {% set isLang = lang.name in langs and lang.name != page.lang %}
+        {% set isCurrentLang = lang.name == page.lang %}
+        {% set currentCss = '-current' if isCurrentLang else '' %}
+        {% set nativeCss = '-native' if lang.name == 'it' else '' %}
+        <tr class="card__langs__row {{currentCss}} {{nativeCss}}">
+            <th class="card__langs__colgroup-end">
+                <a
+                    data-lang="{{lang.name}}"
+                    href="/{{lang.name}}"
+                    aria-label="{{__.card.languages[lang.name]}}"
+                >
+                    {{flag.new(lang.name)}}
+                </a>
+            </th>
+            <td>{{lang.listen}}</td>
+            <td class="card__langs__colgroup-end">{{lang.speak}}</td>
+            <td>{{lang.read}}</td>
+            <td>{{lang.write}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endmacro %}

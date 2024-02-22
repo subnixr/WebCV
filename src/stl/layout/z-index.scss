@@ -1,0 +1,7 @@
+@use './config' as boot;
+
+@include boot.vars('zi', boot.enum(
+    timeline-list-heading,
+    header,
+    modal,
+));

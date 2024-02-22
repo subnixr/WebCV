@@ -1,0 +1,214 @@
+// TODO: refactor into npm package
+
+// TODO: refactor into only generate variables.
+//    convert boot.scale e boot.zindex to mixins
+//    remove boot.merge, boot.ref
+
+
+@use "sass:string";
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:selector";
+
+// Media Queries
+
+$VIEWPORTS: (
+    sm:   375,
+    md:   768,
+    lg:  1024,
+    xl:  1280,
+    2xl: 1600,
+    3xl: 1920,
+) !default;
+
+$DIRECTIONS: (
+    '':  '',
+    't': -top,
+    'b': -bottom,
+    'l': -left,
+    'r': -right,
+    'x': -top -bottom,
+    'y': -left -right,
+    'all': -top -bottom -left -right,
+) !default;
+
+$COLOR_PROPS: (
+    'fg': color,
+    'bg': background-color, 
+    'bo': border-color,
+) !default;
+
+@mixin screenTo($wp) {
+    $w: (map.get($VIEWPORTS, $wp) - 1) * 1px;
+    @media screen and (max-width: $w) {
+        @content;
+    }
+}
+
+@mixin screenFrom($wp) {
+    $w: map.get($VIEWPORTS, $wp) * 1px;
+    @media screen and (min-width: $w) {
+        @content;
+    }
+}
+
+@mixin print() {
+    @media print {
+        @content;
+    }
+}
+
+@mixin theme($names...) {
+    @each $name in $names {
+        @if list.index((dark light), $name) {
+            @media screen and (prefers-color-scheme: #{$name}) {
+                @content;
+            }
+        }
+        @if & {
+            @media screen {
+                @at-root .theme-#{$name} & {
+                    @content;
+                }
+            }
+        } @else {
+            @media screen {
+                .theme-#{$name} {
+                    @content;
+                }
+            }
+        }
+    }
+}
+
+// Setup
+
+@function merge($maps...) {
+    $ret: ();
+    @each $m in $maps {
+        $ret: map.deep-merge($ret, $m);
+    }
+    @return $ret;
+}
+
+@function enum($lst...) {
+    $ret: ();
+    @each $name in $lst {
+        $ret: map.set($ret, $name, list.index($lst, $name));
+    }
+    @return $ret;
+}
+
+@function seq($lst...) {
+    $ret: ();
+    @for $i from 1 through list.length($lst) {
+        $ret: map.set($ret, '#{$i}', list.nth($lst, $i))
+    }
+    @return $ret;
+}
+
+@function parse-symcls($symcls) {
+    @if meta.type-of($symcls) == 'string' {
+        @return ( cls: null, sym: $symcls );
+    }
+
+    @if meta.type-of($symcls) == 'list' {
+        $len: list.length($symcls);
+        @if $len == 0 {
+            @return ( cls: null, sym: '');
+        } 
+        @if $len == 1 {
+            @return ( cls: null, sym: list.nth($symcls, 1));
+        }
+        @return (
+            cls: list.nth($symcls, 1),
+            sym: list.nth($symcls, 2),
+        );
+    }
+
+    @if meta.type-of($symcls) == 'map' {
+        @return $symcls;
+    }
+
+    @error 'invalid symcls';
+}
+
+@mixin root-wrap() {
+    @if not & {
+        :root {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@function var-name($sym, $name) {
+    @return '--#{$sym}-#{$name}';
+}
+
+@mixin vars($sym, $def) {
+    @include root-wrap {
+        @each $name, $val in $def {
+            #{var-name($sym, $name)}: #{$val};
+        }
+    }
+}
+
+@mixin -cls-selector($cls, $sym, $args...) {
+    @if $cls {
+        $sel: '#{$cls}#{$sym}';
+        @each $s in $args {
+            @if $s != '' {
+                $sel: '#{$sel}-#{$s}';
+            }
+        }
+        #{selector.parse($sel)} {
+            @content;
+        }
+    }
+}
+
+@mixin prop($symcls, $prop, $def) {
+    $sm: parse-symcls($symcls);
+    $cls: map.get($sm, cls);
+    $sym: map.get($sm, sym);
+    @include vars($sym, $def);
+    @each $name, $val in $def {
+        @include -cls-selector($cls, $sym, $name) {
+            #{$prop}: var(#{var-name($sym, $name)});
+        }
+    }
+}
+
+@mixin directions($symcls, $prop, $def) {
+    $sm: parse-symcls($symcls);
+    $cls: map.get($sm, cls);
+    $sym: map.get($sm, sym);
+    @include vars($sym, $def);
+    @each $infix, $dirs in $DIRECTIONS {
+        @each $name, $val in $def {
+            @include -cls-selector($cls, $sym, $infix, $name) {
+                @each $d in $dirs {
+                    #{'#{$prop}#{$d}'}: var(#{var-name($sym, $name)});
+                }
+            }
+        }
+    }
+}
+
+@mixin colors($symcls, $def) {
+    $sm: parse-symcls($symcls);
+    $cls: map.get($sm, cls);
+    $sym: map.get($sm, sym);
+    @include vars($sym, $def);
+    @each $infix, $prop in $COLOR_PROPS {
+        @each $name, $val in $def {
+            @include -cls-selector($cls, $sym, $infix, $name) {
+                #{$prop}: var(#{var-name($sym, $name)});
+            }
+        }
+    }
+}
+

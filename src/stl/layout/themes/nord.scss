@@ -1,0 +1,20 @@
+@use '../config' as boot;
+@use '../typography' as typo;
+@use '../box' as box;
+
+@include boot.theme('nord') {
+    @include boot.vars('c', (
+        wallpaper: #3b4252,
+        wallpaper2: #3b4252,
+        primary: #81a1c1,
+        bg: #434c5e,
+        fg: #eceff4,
+        fg-alt: #eceff4,
+        border: #d8dee9,
+        shadow: #00000059,
+        modal-backdrop: #000000b3,
+    ));
+
+    @include boot.vars('f', typo.$font-base);
+    @include boot.vars('bo', box.$borders-base);
+}

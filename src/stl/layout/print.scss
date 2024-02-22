@@ -1,0 +1,48 @@
+@use './config' as boot;
+
+@include boot.print() {
+    @include boot.colors('c', (
+        wallpaper: #ffffff,
+        wallpaper2: #ffffff,
+        primary: #000000,
+        bg: #ffffff,
+        fg: #000000,
+        fg-alt: #ffffff,
+        border: #afafaf,
+        shadow: #00000000,
+        modal-backdrop: #00000000,
+    ));
+
+    @include boot.vars('bo', (
+        default: none,
+        focus: none,
+        deco: none,
+        deco-s: none,
+        deco-xs: none,
+    ));
+
+    @include boot.vars('sz', (
+        propic: 96px,
+    ))
+}
+
+@mixin only($display: block) {
+    display: none;
+    @include boot.print {
+        display: $display;
+    }
+}
+
+@mixin hide {
+    @include boot.print {
+        display: none;
+    }
+}
+
+.print-only {
+    @include only;
+}
+
+.print-hide {
+    @include hide;
+}

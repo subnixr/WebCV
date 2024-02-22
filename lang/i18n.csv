@@ -1,0 +1,40 @@
+FILE,PATH,COMMENT,it,en,es
+/card.json,github_aria_label,Github,Github,Github,Github
+/card.json,languages.en,Inglese,Inglese,English,Inglés
+/card.json,languages.es,Spagnolo,Spagnolo,Spanish,Español
+/card.json,languages.it,Italiano,Italiano,Italian,Italiano
+/card.json,languages.listen_aria_label,Ascolto,Ascolto,Listening,Escuchar
+/card.json,languages.read_aria_label,Lettura,Lettura,Reading,Lectura
+/card.json,languages.speak_aria_label,Produzione orale,Produzione orale,Oral Production,Producción oral
+/card.json,languages.write_aria_label,Produzione scritta,Produzione scritta,Written Production,Producción escrita
+/card.json,linkedin_aria_label,LinkedIn,LinkedIn,LinkedIn,LinkedIn
+/card.json,ranked_aria_label,Visita,Visita,Visit,Visita
+/card.json,title_aria_label,Vai al sito,Vai al sito,Go to site,Ir al sitio
+/header.json,github_aria_label,Github,Github,Github,Github
+/header.json,linkedin_aria_label,Linkedin,Linkedin,Linkedin,Linkedin
+/header.json,mobile_menu_aria_label,Menù,Menù,Menu,Menú
+/modal.json,close_aria_label,Chiudi,Chiudi,Close,Cerrar
+/modal.json,mobile_nav_aria_label,Menu mobile,Menu mobile,Mobile Menu,Menú móvil
+/modal.json,settings_aria_label,Impostazioni,Impostazioni,Settings,Ajustes
+/nav.json,education,education,education,education,educación
+/nav.json,education_atia_label,education,education,education,educación
+/nav.json,experiences,experiences,experiences,experiences,experiencias
+/nav.json,experiences_atia_label,experiences,experiences,experiences,experiencias
+/nav.json,settings_aria_label,impostazioni,impostazioni,settings,ajustes
+/nav.json,skills,skills,skills,skills,habilidades
+/nav.json,skills_atia_label,skills,skills,skills,habilidades
+/settings.json,theme.cta_aria_label,tema,tema,theme,tema
+/settings.json,theme.title,Tema,Tema,Theme,Tema
+/settings.json,timeline.asc,Ascendente,Ascendente,Ascending,Ascendente
+/settings.json,timeline.desc,Discendente,Discendente,Descending,Descendente
+/settings.json,timeline.endDate,Data Fine,Data Fine,End Date,Fecha de finalización
+/settings.json,timeline.field,Campo,Campo,Field,Campo
+/settings.json,timeline.order,Ordinamento,Ordinamento,Order,Orden
+/settings.json,timeline.startDate,Data Inizio,Data Inizio,Start Date,Fecha de inicio
+/settings.json,timeline.title,Timeline,Timeline,Timeline,Línea de tiempo
+/timeline.json,education,Education,Education,Education,Educación
+/timeline.json,experiences,Experiences,Experiences,Experiences,Experiencias
+/timeline.json,hardSkills,Hard Skills,Hard Skills,Hard Skills,Habilidades técnicas
+/timeline.json,hobbies,Hobbies + Projects,Hobbies + Projects,Hobbies + Projects,Pasatiempos + Proyectos
+/timeline.json,languages,Languages,Languages,Languages,Idiomas
+/timeline.json,softSKills,Soft Skills,Soft Skills,Soft Skills,Habilidades blandas

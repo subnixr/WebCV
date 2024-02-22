@@ -1,0 +1,259 @@
+seo:
+  title: CV Mariani Roberto
+  author: Mariani Roberto
+  description: Mariani Roberto Curriculum Vitae
+  opengraph: 
+    title: CV Mariani Roberto
+    type: profile
+    image: "/img/profile.png"
+    description: Mariani Roberto Curriculum Vitae
+  keywords:
+    - Mariani
+    - Roberto
+    - curriculum
+    - vitae
+    - cv
+    - senior
+    - developer
+    - web
+    - frontend
+    - javascript
+    - typescript
+    - react
+    - uuuf
+
+profile:
+  name: Roberto Mariani
+  title: Senior Frontend Web Developer
+  address: Santa Cruz de Tenerife, Canary Islands, Spain
+  image: 
+    desktop: "/img/profile-md.png"
+    mobile: "/img/profile-sm.png"
+  imageAlt: Immagine profilo
+  linkedin: https://www.linkedin.com/in/roberto-mariani-858839170/
+  github: https://github.com/subnixr
+
+languages:
+- { name: it, listen: '*', speak: '*', read: '*', write: '*' }
+- { name: en, listen: C1, speak: C1, read: C1, write: C1 }
+- { name: es, listen: A2, speak: A2, read: B1, write: A1 }
+
+skills: 
+
+    hard:
+    - label: Javascript
+      rank: S
+    - label: Typescript
+      rank: A
+    - label: HTML, CSS, Sass
+      rank: A
+    - label: React, Redux
+      rank: A
+    - label: Node, Webpack
+      rank: A
+    - label: GraphQL
+      rank: B
+    - label: I18N, A17Y
+      rank: B
+    - label: Docker
+      rank: B
+    - label: Shopify
+      rank: C
+    - label: Next.js
+      rank: C
+
+    soft:
+    - label: Metodico
+    - label: Comunicatore
+    - label: Problem solving
+    - label: Critical thinking
+    - label: Self development
+    - label: Coach
+    - label: Team player
+    - label: UI design
+    - label: Full Remote
+    - label: Office365
+
+    hobbies:
+    - label: Music production
+    - label: Hicking
+    - label: Kickboxing
+    - label: Arch Linux
+    - label: Retro hardware
+    - label: uuuf
+      url: https://www.npmjs.com/package/uuuf 
+    - label: csvt
+      url: https://www.npmjs.com/package/csvt 
+    - label: m-press
+      url: https://github.com/subnixr/m-press 
+    - label: minimal
+      url: https://github.com/subnixr/minimal 
+    - label: lgpt
+      url: https://github.com/subnixr/LittleGPTracker 
+  
+education:
+
+- startDate: '2019'
+  endDate: '2019'
+  url: https://www.medallia.com/
+  linkedin: https://www.linkedin.com/company/medallia-inc./
+  thumbnail: /img/company/medallia.png
+  thumbnailAlt: Medallia
+  title: Medallia Product Certification
+  entity: Medallia Inc.
+  location: "Londra, Regno Unito"
+  description: '
+  <p><em>Livello NQF:</em> Level 1</p>
+  <p>Gestione programmi CX B2B attraverso piattaforma Medallia Experience Cloud e Medallia Digital</p>
+  '
+
+- startDate: '2016'
+  endDate: '2020'
+  url: https://www.unimib.it/
+  linkedin: https://www.linkedin.com/school/university-degli-studi-di-milano-bicocca/
+  thumbnail: /img/company/bicocca.png
+  thumbnailAlt: unimib
+  title: Informatica e Telecomunicazioni
+  entity: UNIMIB
+  location: "Milano, Italia"
+  description: '
+  <p>Frequentazione come studente-lavoratore.</p>
+  <p>Studi abbandonati per occasioni lavorative.</p>
+  '
+
+- startDate: '2015'
+  endDate: '2016'
+  url: https://www.polimi.it/
+  linkedin: https://www.linkedin.com/school/polimi/
+  thumbnail: /img/company/polimi.png
+  thumbnailAlt: polimi
+  title: Ingegneria Informatica
+  entity: POLIMI
+  location: "Milano, Italia"
+  description: '
+  <p>Frequentazione come studente-lavoratore.</p>
+  '
+
+
+- startDate: '2008'
+  endDate: '2013'
+  url: https://www.hensemberger.edu.it
+  linkedin: https://www.linkedin.com/school/hensemberger/
+  thumbnail: /img/company/hensemberger.png
+  thumbnailAlt: Hensemberger
+  title: Perito Industriale Capotecnico Specializzato in Informatica
+  entity: ITIS P.Hensemberger
+  location: "Monza, Italia"
+  description: '
+  <p>
+  <em>Voto maturità:</em> 82/100
+  </p>
+  '
+
+
+experiences:
+
+- startDate: 2020-04
+  endDate: Attuale
+  role: Senior Frontend Web Developer
+  company: WIP Italia
+  location: "Milano, Italia (remoto)"
+  url: https://wipitalia.it
+  linkedin: https://www.linkedin.com/company/wip-italia/
+  thumbnail: /img/company/wipitalia.png
+  thumbnailAlt: WIP Italia
+  description: '
+  <ul>
+  <li>Sviluppo frontend (vanilla, React, Redux, Next.js)</li>
+  <li>Sviluppo frontend piattaforme CMS (Hybris, Twill, Storyblok)</li>
+  <li>Sviluppo frontend piattaforme E-Commerce (Hybris, Shopify)</li>
+  <li>Sviluppo progetti open source
+    (<a href="https://www.npmjs.com/package/uuuf" target="_blank">uuuf</a>,
+    <a href="https://www.npmjs.com/package/csvt" target="_blank">csvt</a>)
+  </li>
+  <li>Sviluppo corsi formazione tecnica interna
+  </ul>
+  '
+
+- startDate: 2018-10
+  endDate: 2020-04
+  role: Software Developer
+  company: Omega3C
+  location: "Milano, Italia"
+  url: https://www.omega3c.it
+  linkedin: https://www.linkedin.com/company/omega3c/
+  thumbnail: /img/company/omega3c.png
+  thumbnailAlt: Omega3C
+  description: '
+  <ul>
+  <li>Sviluppo frontend (AngularJs, React, React Bootstrap)</li>
+  <li>Sviluppo webapp (VB.NET, Python 3)</li>
+  <li>Sviluppo applicazioni text analytics (spaCy)</li>
+  <li>Automazione task interni</li>
+  <li>Integrazioni Microstrategy</li>
+  </ul>
+  '
+
+- startDate: 2017-10
+  endDate: 2018-10
+  role: Frontend Web Developer
+  company: Gnu Coop
+  location: "Milano, Italia (remoto)"
+  url: https://www.gnucoop.com
+  linkedin: https://www.linkedin.com/company/gnucoop/
+  thumbnail: /img/company/gnucoop.png
+  thumbnailAlt: Gnu Coop
+  description: '
+  <ul>
+  <li>Sviluppo frontend (Angular 4, Typescript)</li>
+  </ul>
+  '
+
+- startDate: 2015-06
+  endDate: 2017-10
+  role: Web Developer
+  company: Big Data Technologies
+  location: "Renate, Italia"
+  linkedin: https://www.linkedin.com/company/big-data-technologies/
+  thumbnail: /img/company/bdt.png
+  thumbnailAlt: Big Data Technologies
+  description: '
+  <ul>
+  <li>Sviluppo frontend (Angular Js, Bootstrap 3)</li>
+  <li>Sviluppo webapp isomorfiche (Meteor Js, Scala Js)</li>
+  <li>Sviluppo webapp (Scala, Play Framework)</li>
+  </ul>
+  '
+
+- startDate: 2014-01
+  endDate: 2015-06
+  role: Software Developer
+  company: Lifelike
+  location: "Chiasso, Svizzera"
+  url: https://www.skillgym.com/
+  linkedin: https://www.linkedin.com/company/lifelike-interaction/
+  thumbnail: /img/company/lifelike.png
+  thumbnailAlt: Lifelike
+  description: '
+  <ul>
+  <li>Sviluppo webapp mobile ibrida (vanilla, Angular Js)</li>
+  <li>Sviluppo applicazioni interne (VB.NET, ActionScript)</li>
+  <li>Automazione task interni</li>
+  </ul>
+  '
+
+- startDate: '2011'
+  endDate: '2013'
+  role: Docente volontario
+  company: ITIS P.Hensemberger
+  location: "Monza, Italia"
+  url: https://www.hensemberger.edu.it
+  linkedin: https://www.linkedin.com/school/hensemberger/
+  thumbnail: /img/company/hensemberger.png
+  thumbnailAlt: Hensemberger
+  description: '
+  <p>Tramite programma extracurriculare organizzato con la supervisione dei professori.</p>
+  '
+
+
+

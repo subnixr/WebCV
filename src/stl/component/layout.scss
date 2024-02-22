@@ -1,0 +1,114 @@
+@use '../layout/config' as boot;
+@use '../layout/colors';
+@use '../layout/z-index';
+@use '../layout/box' as box;
+@use '../layout/animations' as anim;
+
+.layout {
+    @include box.shadow;
+
+    max-width: var(--sz-page-max-width);
+    margin: 0 auto;
+
+    color: var(--c-fg);
+
+    position: relative;
+
+    --wrapper-padding: var(--sz-header);
+
+    @include boot.screenTo(tablet) {
+        --sz-header: var(--sz-header-mobile);
+    }
+
+    @include boot.theme('dark') {
+        box-shadow: none;
+    }
+
+    @include boot.print {
+        max-width: 100%;
+        margin: 0;
+        padding: var(--p-m);
+    }
+
+    &.-slim {
+        @include boot.screenTo(tablet) {
+            --sz-header: var(--sz-header-slim);
+        }
+    }
+
+    &.-stuck {
+        .layout {
+            &__header {
+                @include anim.default;
+                @include boot.screenTo(tablet) {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+
+    &.-scroll-lock {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &__main-wrapper {
+        @include anim.default;
+
+        background: var(--c-wallpaper2);
+
+        padding-left: var(--wrapper-padding);
+
+        @include boot.screenTo(tablet) {
+            padding-left: 0;
+            padding-top: var(--wrapper-padding);
+        }
+
+        @include boot.print {
+            padding-left: 0;
+        }
+    }
+
+    &__main {
+        min-height: 100vh;
+    }
+
+    &__header {
+        @include box.shadow;
+        @include anim.default;
+
+        background: var(--c-bg);
+        border-left: var(--bo-deco);
+
+        position: fixed;
+        top: 0;
+        width: var(--sz-header);
+        height: 100vh;
+        z-index: var(--zi-header);
+
+        @include boot.screenTo(tablet) {
+            border-bottom: var(--bo-deco-s);
+
+            width: 100%;
+            height: var(--sz-header);
+            border-left: none;
+        }
+
+        @include boot.print {
+            position: static;
+            width: 100%;
+            height: auto;
+            border-left: none;
+            border-bottom: none;
+        }
+    }
+
+    .modal.--mobile-nav {
+        ---window-width: 320px;
+        ---window-height: 320px;
+    }
+
+    .modal.--settings {
+        ---window-width: 350px;
+    }
+}

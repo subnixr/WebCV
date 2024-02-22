@@ -1,0 +1,87 @@
+@use '../layout/config' as boot;
+@use '../layout/colors';
+@use '../layout/z-index';
+@use '../layout/typography' as typo;
+@use '../layout/box' as box;
+@use '../layout/animations' as anim;
+
+.modal {
+    --modal-pointer-events: none;
+
+    ---window-width: fit-content;
+    ---window-height: fit-content;
+    --window-opacity: 0;
+
+    display: block;
+    pointer-events: var(--modal-pointer-events);
+
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: var(--zi-modal);
+
+    &__backdrop {
+        @include anim.default;
+
+        width: 100%;
+        height: 100%;
+        background: var(--c-modal-backdrop);
+        position: relative;
+
+        opacity: var(--window-opacity);
+    }
+
+    &__window {
+        @include anim.default;
+        @include box.shadow;
+
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+
+        background: var(--c-bg);
+        color: var(--c-fg);
+        border-radius: var(--br-modal);
+
+        width: var(---window-width);
+        height: var(---window-height);
+
+        max-width: calc(var(--sz-page-max-width) - 2 * var(--m-xxl));
+        max-height: calc(100vh - 2 * var(--m-xxl));
+
+        padding: var(--p-l);
+
+        opacity: var(--window-opacity);
+
+        display: flex;
+        flex-flow: column nowrap;
+
+        @include boot.theme('neon') {
+            border: var(--bo-deco-xs);
+        }
+    }
+
+    &__close-cta {
+        @include typo.cta;
+
+        margin-left: auto;
+
+        border: none;
+        padding: 0;
+        
+        .icon {
+            ---icon-size: var(--ics-modal-close);
+        }
+    }
+
+    &__content {
+        flex: 1;
+    }
+
+    &.-shown {
+        --modal-pointer-events: all;
+        --window-opacity: 1;
+    }
+}

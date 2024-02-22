@@ -1,0 +1,35 @@
+@use '../config' as boot;
+@include boot.theme('neon') {
+    @include boot.vars('f', (
+        base: (Delta Ray, sans-serif),
+        alt:  (Delta Ray, sans-serif),
+        mono: (Hermit,   monospace),
+    ));
+
+    @include boot.vars('c', (
+        wallpaper: #101010,
+        wallpaper2: #101010,
+        primary: #f18100,
+        secondary: #a926bb,
+        bg: #171717,
+        fg: #00b1eb,
+        fg-alt: #ffffff,
+        border: #f18100,
+        shadow: #a926bb59,
+        shadow2: #f1810059,
+        modal-backdrop: #000000b3,
+    ));
+
+    @include boot.vars('bo', (
+        default: 1px solid var(--c-border),
+        focus: 1px solid var(--c-primary),
+        deco: 8px solid var(--c-secondary),
+        deco-s: 4px solid var(--c-secondary),
+        deco-xs: 3px solid var(--c-secondary),
+    ));
+
+    @include boot.vars('br', (
+        modal: 0,
+        round: 0,
+    ));
+}

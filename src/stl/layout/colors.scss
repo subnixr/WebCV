@@ -1,0 +1,17 @@
+@use './config' as boot;
+@use './themes/light';
+@use './themes/dark';
+@use './themes/nord';
+@use './themes/neon';
+
+@include boot.vars('c', (
+    wallpaper: #afafaf,
+    wallpaper2: #efefef,
+    primary: #339933,
+    bg: #ffffff,
+    fg: #000000,
+    fg-alt: #ffffff,
+    border: #afafaf,
+    shadow: #00000059,
+    modal-backdrop: #000000b3,
+));

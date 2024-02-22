@@ -1,0 +1,90 @@
+{% import 'icon.html.jinja' as icon %}
+{% import 'flag.html.jinja' as flag %}
+{% import 'header.html.jinja' as header %}
+{% import 'timeline.html.jinja' as timeline %}
+{% import 'modal.html.jinja' as modal %}
+{% import 'nav.html.jinja' as nav %}
+{% import 'settings.html.jinja' as settings %}
+
+<!DOCTYPE html>
+<html lang="{{page.lang}}">
+<head>
+    <title>{{seo.title}}</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+
+    <!-- LANGS -->
+    {% for lang in langs %}
+    <link rel="alternate" hreflang="{{lang}}" href="{{env.HTTP_PROTO}}://{{env.DOMAIN}}/{{lang}}/">
+    {% endfor %}
+
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="apple-mobile-web-app-title">
+    <meta name="application-name">
+    <meta name="msapplication-TileColor" content="#00a300">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- SEO -->
+    <meta name="keyword" content="{{' '.join(seo.keywords)}}">
+    <meta name="description" content="{{seo.description}}">
+    <meta name="author" content="{{seo.author}}">
+    <meta name="robots" content="all">
+
+
+    <!-- open graph -->
+    <meta name="og:title" content="{{seo.opengraph.title}}">
+    <meta name="og:description" content="{{seo.opengraph.description}}">
+    <meta name="og:type" content="{{seo.opengraph.type}}">
+    <meta name="og:image" content="{{env.HTTP_PROTO}}://{{env.DOMAIN}}{{seo.opengraph.image}}">
+    <meta name="og:url" content="{{env.HTTP_PROTO}}://{{env.DOMAIN}}/{{page.lang}}/">
+
+    <link rel="stylesheet" href="/main.css">
+
+    <script id="data-experiences" type="application/json">{{experiences|json}}</script>
+    <script id="data-education" type="application/json">{{education|json}}</script>
+</head>
+<body class="layout" data-component="page" data-page="{{page.name}}" data-lang="{{page.lang}}">
+
+    <div class="layout__container">
+        <div class="layout__header" data-header>
+            {{header.new(profile)}}
+        </div>
+        <div class="layout__main-wrapper">
+            <main class="layout__main" data-main>
+                {{timeline.new(
+                    experiences = experiences,
+                    education = education,
+                    languages = languages,
+                    skills = skills
+                )}}
+            </main>
+        </div>
+    </div>
+
+    {{modal.include(
+        name = 'mobile-nav',
+        class = '--mobile-nav',
+        content = nav.new(modal=True),
+        ariaLabel = __.modal.mobile_nav_aria_label,
+    )}}
+    {{modal.include(
+        name = 'settings',
+        class = '--settings',
+        content = settings.new(),
+        ariaLabel = __.modal.settings_aria_label,
+    )}}
+
+    {{icon.include()}}
+    {{flag.include()}}
+
+    <script src="/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+    "theme": {
+        "cta_aria_label": "tema",
+        "title": "Tema"
+    },
+    "timeline": {
+        "asc": "Ascendente",
+        "desc": "Descendente",
+        "endDate": "Fecha de finalización",
+        "field": "Campo",
+        "order": "Orden",
+        "startDate": "Fecha de inicio",
+        "title": "Línea de tiempo"
+    }
+}

@@ -1,0 +1,120 @@
+@use '../layout/config' as boot;
+@use '../layout/colors';
+@use '../layout/typography' as typo;
+@use '../layout/box' as box;
+@use '../layout/animations' as anim;
+
+.settings {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: var(--p-xl);
+    padding: var(--p-m) 0;
+
+    height: 100%;
+
+    &__section {
+        display: flex;
+        flex-flow: column nowrap;
+
+        --content-flow: column nowrap;
+        --content-justify: space-between;
+
+        &__content {
+            flex: 1;
+            display: flex;
+            flex-flow: var(--content-flow);
+            justify-content: var(--content-justify);
+            gap: var(--p-l);
+        }
+
+        &__title {
+            @include typo.title;
+            margin-bottom: var(--m-m);
+        }
+
+        &.-timeline {
+            --content-flow: row nowrap;
+        }
+
+        &.-theme {
+            flex: 1;
+            --content-justify: space-evenly;
+        }
+    }
+
+    .select {
+        flex: 1;
+        user-select: none;
+
+        &__label {
+            @include typo.label;
+            display: block;
+            width: 100%;
+            margin-bottom: var(--m-s);
+            color: var(--c-primary);
+        }
+
+        &__input-wrapper {
+            position: relative;
+        }
+
+        select {
+            @include box.shadow;
+            @include typo.input;
+
+            padding: var(--p-m) var(--p-m);
+            border: var(--bo-default);
+
+            color: var(--c-fg);
+
+            width: 100%;
+
+            @include boot.theme('neon') {
+                box-shadow: var(--c-shadow2) 0 4px 8px;
+            }
+        }
+
+        .icon {
+            position: absolute;
+            top: 50%;
+            right: var(--p-m);
+            transform: translateY(-50%);
+            color: var(--c-primary);
+            ---icon-size: 14px;
+            pointer-events: none;
+        }
+
+        &:focus {
+            border: var(--bo-focus);
+        }
+    }
+
+    .theme-cta {
+        @include anim.default;
+        @include box.shadow;
+        @include typo.cta;
+
+        width: 100%;
+
+        background: var(--c-bg);
+        color: var(--c-fg);
+        border: var(--bo-default);
+        padding-right: var(--p-s);
+
+        &__inner {
+            display: block;
+            padding: var(--p-s) var(--p-m);
+            margin: var(--p-s) var(--p-m);
+            border-left: var(--bo-deco-s);
+        }
+
+        &:hover {
+            color: var(--c-primary);
+            transform: translate(0, -2px);
+        }
+
+        &.theme-neon {
+            box-shadow: var(--c-shadow2) 0px 4px 8px;
+        }
+    }
+}

@@ -1,0 +1,378 @@
+@use '../layout/config' as boot;
+@use '../layout/colors';
+@use '../layout/typography' as typo;
+@use '../layout/box' as box;
+@use '../layout/animations' as anim;
+@use '../layout/print' as print;
+
+.card {
+    padding-top: var(--sz-eyelet-offset-top);
+
+    --content-padding: var(--p-xl);
+
+    @include boot.print {
+        padding-top: 0;
+    }
+
+    &.-small {
+        --content-padding: 0;
+    }
+
+    &__wrapper {
+        @include box.shadow;
+        
+        border-left: var(--bo-deco-s);
+        background: var(--c-bg);
+
+        height: 100%;
+
+        padding-top: calc(var(--p-m) + var(--sz-eyelet-offset-bottom));
+        padding-bottom: var(--p-l);
+        padding-left: var(--p-m);
+        padding-right: var(--p-m);
+
+        position: relative;
+
+        @include boot.print {
+            padding: 0;
+        }
+    }
+
+    &__eyelet {
+        @include typo.eyelet;
+        @include box.shadow;
+        @include box.print-title;
+
+        color: var(--c-fg-alt);
+        background: var(--c-primary);
+
+        padding: var(--p-m);
+
+        height: var(--sz-eyelet-height);
+
+        display: flex;
+        align-items: center;
+
+        position: absolute;
+        top: calc(-1 * var(--sz-eyelet-offset-top));
+        right: var(--sz-eyelet-offset-lateral);
+
+        @include boot.theme('neon') {
+            background: var(--c-secondary);
+        }
+
+        @include boot.print {
+            position: static;
+        }
+    }
+
+    &__head {
+        padding-right: var(--p-m);
+
+        display: grid;
+        grid-template-columns: auto auto 1fr;
+        grid-template-rows: minmax(var(--ics-title), auto) repeat(2, auto);
+        grid-template-areas: 
+            'thumb social   title'
+            'thumb subtitle subtitle'
+            'thumb hint     hint';
+
+        column-gap: var(--p-m);
+
+        @include boot.print {
+            grid-template-columns: auto 1fr;
+            grid-template-rows: repeat(4, auto);
+            grid-template-areas: 
+                'thumb title'
+                'thumb social'
+                'thumb subtitle'
+                'thumb hint';
+        }
+    }
+
+    &__thumbnail {
+        grid-area: thumb;
+        align-self: center;
+
+        img {
+            border-radius: var(--br-round);
+
+            display: block;
+            width: var(--ics-thumbnail);
+            height: var(--ics-thumbnail);
+
+            @include boot.theme('neon') {
+                border: var(--bo-deco-xs);
+            }
+
+            @include boot.print {
+                border-radius: 0;
+            }
+        }
+    }
+
+    &__linkedin {
+        @include typo.cta;
+        grid-area: social;
+        align-self: center;
+        .icon {
+            @include print.hide;
+            ---icon-size: var(--ics-title);
+        }
+
+        @include boot.print {
+            font-size: var(--fs-200);
+        }
+    }
+
+    &__title-wrapper {
+        @include typo.cta;
+        grid-area: title;
+        // align-self: center;
+        @include boot.print {
+            display: flex;
+            flex-flow: column nowrap;
+
+            &::after {
+                font-size: var(--fs-200);
+            }
+        }
+
+
+        &[href=""] {
+            pointer-events: none;
+            .icon {
+                display: none;
+            }
+        }
+    }
+
+    &__title {
+        @include typo.title;
+
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-end;
+
+        .icon {
+            @include print.hide;
+            flex: 0 0 var(--ics-title);
+            margin-left: var(--m-s);
+            ---icon-size: var(--ics-title);
+
+            @include boot.screenTo(tablet) {
+                ---icon-size: 22px;
+            }
+        }
+    }
+
+    &__subtitle {
+        @include typo.subtitle;
+        grid-area: subtitle;
+        margin-top: var(--m-m);
+
+        @include boot.print {
+            margin-top: 0;
+        }
+    }
+
+    &__hint {
+        @include typo.hint;
+        grid-area: hint;
+        margin-top: var(--m-m);
+
+        @include boot.print {
+            margin-top: 0;
+        }
+    }
+
+    &__separator {
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-bottom: var(--bo-default);
+        margin: var(--m-m) auto;
+    }
+
+    &__content {
+        @include typo.body;
+        padding-top: var(--p-m);
+        padding-left: var(--content-padding);
+        padding-right: var(--content-padding);
+
+        .icon {
+            ---icon-size: 16px;
+        }
+
+        @include boot.print {
+            padding: 0;
+        }
+    }
+
+    &__list {
+        column-count: 2;
+        column-gap: var(--m-m);
+
+        @include boot.print {
+            display: flex;
+            flex-flow: row wrap;
+        }
+    }
+
+    &__list-item {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        padding: var(--p-s) var(--p-m);
+
+        &.-has-url {
+            @include boot.print {
+                flex: 1 0 100%;
+            }
+        }
+
+        a {
+            display: flex;
+            gap: var(--p-s);
+
+            .icon {
+                @include print.hide;
+            }
+        }
+
+        &[data-rank]::before {
+            content: attr(data-rank);
+
+            display: inline-block;
+            flex: 0 0 auto;
+
+            margin-right: var(--m-m);
+
+            border-radius: var(--br-round);
+            color: var(--c-primary);
+            font-weight: 700;
+        }
+
+        &[data-rank=""]::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: var(--br-round);
+            background: var(--c-fg);
+
+            @include boot.theme('neon') {
+                background: var(--c-primary);
+            }
+
+            @include print.hide;
+        }
+    }
+
+    &__langs {
+        width: 100%;
+
+        &__headrow th {
+            border-bottom: var(--bo-default);
+        }
+
+        &__row {
+            &.-current td {
+                color: var(--c-primary);
+                font-weight: 600;
+
+                @include boot.print {
+                    font-weight: 300;
+                }
+            }
+
+            &.-native {
+                td, th {
+                    border-bottom: var(--bo-default);
+                }
+            }
+        }
+
+        &__colgroup-end {
+            border-right: var(--bo-default);
+        }
+
+        td, th {
+            text-align: center;
+            vertical-align: middle;
+            padding: var(--p-s) var(--p-m);
+        }
+
+        td {
+            font-weight: 300;
+        }
+
+        .flag, .icon {
+            ---icon-size: var(--ics-lang);
+        }
+
+        @include boot.print {
+            max-width: 350px;
+
+            [data-lang] {
+                .icon {
+                    @include print.hide;
+                }
+
+                &::after {
+                    content: attr(data-lang);
+                }
+            }
+        }
+    }
+
+    &__rich-text {
+        a {
+            color: var(--c-primary);
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        ul {
+            li {
+                padding: var(--m-s);
+
+                &::before {
+                    content: '';
+                    flex: 0 0 auto;
+
+                    display: inline-block;
+                    width: 6px;
+                    height: 6px;
+
+                    margin-right: var(--m-m);
+
+                    border-radius: 50%;
+                    background: var(--c-fg);
+
+                    @include boot.print {
+                        content: '•';
+                    }
+                }
+            }
+        }
+
+        * + p {
+            margin-top: var(--m-m);
+        }
+
+        em {
+            color: var(--c-primary);
+            margin-right: var(--m-s);
+        }
+        
+        @include boot.theme('neon') {
+            b {
+                color: var(--c-primary);
+            }
+        }
+    }
+
+}

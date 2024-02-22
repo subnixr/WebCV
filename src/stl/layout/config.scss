@@ -1,0 +1,15 @@
+@use '../lib/boot' with (
+    $VIEWPORTS: (
+        sm:   375,
+        md:   768,
+        lg:  1024,
+        xl:  1280,
+        2xl: 1600,
+        3xl: 1920,
+
+        mobile: 375,
+        tablet: 768,
+        desktop: 1024,
+    ),
+);
+@forward '../lib/boot';

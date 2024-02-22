@@ -1,0 +1,128 @@
+@use '../layout/config' as boot;
+@use '../layout/colors';
+@use '../layout/z-index';
+@use '../layout/typography' as typo;
+@use '../layout/box' as box;
+@use '../layout/animations' as anim;
+
+
+.timeline {
+    padding-bottom: var(--p-xl);
+
+    display: flex;
+    flex-flow: column nowrap;
+
+    &__section-title {
+        @include anim.default;
+        @include typo.eyelet;
+        @include box.print-title;
+
+        background: var(--c-primary);
+        color: var(--c-fg-alt);
+
+        padding: var(--p-m) var(--p-xl);
+
+        position: sticky;
+        top: 0;
+        z-index: var(--zi-timeline-list-heading);
+
+        &.-stuck {
+            @include box.shadow;
+        }
+
+        @include boot.screenTo(tablet) {
+            top: var(--sz-header);
+        }
+
+        @include boot.theme('neon') {
+            background: var(--c-secondary);
+        }
+    } 
+
+    &__section-content {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        margin-top: var(--m-xl);
+        margin-left: var(--p-xl);
+        margin-right: var(--p-xl);
+
+        @include boot.print {
+            margin: 0;
+        }
+
+        &.--skills {
+            grid-template-columns: repeat(2, calc(50% - var(--p-xl) / 2));
+            grid-template-rows: repeat(2, auto);
+            grid-template-areas:
+                'hard soft'
+                'hobby lang';
+
+            align-items: stretch;
+
+            column-gap: var(--p-xl);
+            row-gap: var(--p-xl);
+
+            @include boot.screenTo(desktop) {
+                grid-template-columns: repeat(1, 100%);
+                grid-template-rows: repeat(4, auto);
+                grid-template-areas:
+                    'hard'
+                    'soft'
+                    'hobby'
+                    'lang';
+            }
+
+            @include boot.print {
+                grid-template-columns: repeat(1, 100%);
+                grid-template-rows: repeat(4, auto);
+                grid-template-areas:
+                    'hard'
+                    'soft'
+                    'hobby'
+                    'lang';
+
+                column-gap: var(--p-m);
+                row-gap: var(--p-m);
+            }
+
+            .card {
+                &.--hard {
+                    grid-area: hard;
+                }
+
+                &.--soft {
+                    grid-area: soft;
+                }
+
+                &.--hobby {
+                    grid-area: hobby;
+                }
+
+                &.--lang {
+                    grid-area: lang;
+                }
+            }
+
+            .card + .card {
+                margin-top: 0;
+            }
+        }
+
+        .card + .card {
+            margin-top: var(--p-xl);
+        }
+    }
+
+    &__section {
+        & + & {
+            margin-top: var(--p-xl);
+
+            @include boot.print {
+                margin-top: var(--p-m);
+            }
+        }
+
+    }
+
+}

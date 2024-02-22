@@ -1,0 +1,90 @@
+@use './config' as boot;
+
+$spacing-base: (
+    s: 4px,
+    m: 8px,
+    l: 16px,
+    xl: 32px,
+    xxl: 64px,
+);
+@include boot.directions('m', 'margin', $spacing-base);
+@include boot.directions('p', 'padding', $spacing-base);
+
+@include boot.screenTo(tablet) {
+    $spacing-base: (
+        s: 4px,
+        m: 8px,
+        l: 16px,
+        xl: 16px,
+        xxl: 32px,
+    );
+    @include boot.directions('m', 'margin', $spacing-base);
+    @include boot.directions('p', 'padding', $spacing-base);
+}
+
+$borders-base: (
+    default: 1px solid var(--c-border),
+    focus: 1px solid var(--c-primary),
+    deco: 8px solid var(--c-primary),
+    deco-s: 4px solid var(--c-primary),
+    deco-xs: 3px solid var(--c-primary),
+);
+@include boot.directions('bo', 'border', $borders-base);
+@include boot.prop('br', 'border-radius', (
+    modal: 4px,
+    round: 50%,
+));
+
+@include boot.vars('sz', (
+    page-max-width: 1024px,
+    header: 250px,
+    header-mobile: 170px,
+    header-slim: 76px,
+    propic: 120px,
+    propic-slim: 64px,
+    eyelet-height: 36px,
+    eyelet-offset-top: 18px,
+    eyelet-offset-bottom: 18px,
+    eyelet-offset-lateral: var(--p-m),
+));
+
+@include boot.prop('ics', '---icon-size', (
+    nav: 18px,
+    settings: 24px,
+    lang: 20px,
+    title: 24px,
+    social: 48px, 
+    thumbnail: 80px,
+    modal-close: 24px,
+));
+
+@include boot.screenTo(tablet) {
+    @include boot.vars('ics', (
+        social: 32px, 
+        thumbnail: 64px,
+    ));
+}
+
+@mixin shadow {
+    box-shadow: var(--c-shadow) 0px 4px 8px;
+
+    @include boot.print {
+        box-shadow: none;
+    }
+}
+
+@mixin print-title {
+    @include boot.print {
+        padding: var(--p-m) var(--p-m) var(--p-l) var(--p-m);
+        background: transparent;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--c-wallpaper);
+    color: var(--c-fg);
+}

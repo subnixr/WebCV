@@ -1,0 +1,109 @@
+{% import 'card.html.jinja' as card %}
+{% macro new(
+    experiences,
+    education,
+    skills,
+    languages
+) -%}
+<section class="timeline" data-component="timeline">
+    <template name="card-experience">
+        {{card.new(
+            eyelet = '${item.startDate} ~ ${item.endDate}',
+            title = '${item.company}',
+            subtitle = '${item.role}',
+            hint = '${item.location}',
+            richText = '${item.description}',
+            thumbnail = '${item.thumbnail}',
+            thumbnailAlt = '${item.thumbnailAlt}',
+            url = '${item.url}',
+            linkedin = '${item.linkedin}',
+            github = '${item.github}'
+        )}}
+    </template>
+
+    <template name="card-education">
+        {{card.new(
+            eyelet = '${item.startDate} ~ ${item.endDate}',
+            title = '${item.entity}',
+            subtitle = '${item.title}',
+            hint = '${item.location}',
+            richText = '${item.description}',
+            thumbnail = '${item.thumbnail}',
+            thumbnailAlt = '${item.thumbnailAlt}',
+            url = '${item.url}',
+            linkedin = '${item.linkedin}',
+            github = '${item.github}'
+        )}}
+    </template>
+
+    <div id="skills"><!-- --></div>
+    <section class="timeline__section" data-navsection="skills">
+        <div class="timeline__section-content --skills">
+            {{card.new(
+                class = '-small --hard',
+                eyelet = __.timeline.hardSkills,
+                content = card.listContent(skills.hard)
+            )}}
+            {{card.new(
+                class = '-small --soft',
+                eyelet = __.timeline.softSkills,
+                content = card.listContent(skills.soft)
+            )}}
+            {{card.new(
+                class = '-small --hobby',
+                eyelet = __.timeline.hobbies,
+                content = card.listContent(skills.hobbies)
+            )}}
+            {{card.new(
+                class = '-small --lang',
+                eyelet = __.timeline.languages,
+                content = card.languageContent(languages)
+            )}}
+        </div>
+    </section>
+    <section class="timeline__section" data-navsection="experiences">
+        <div id="experiences"><!-- --></div>
+        <div class="timeline__section-title" data-stuckable>
+            {{__.timeline.experiences}}
+        </div>
+        <div class="timeline__section-content" data-section="experiences">
+            {% for exp in experiences %}
+                {{card.new(
+                    eyelet = exp.startDate + ' ~ ' + exp.endDate,
+                    title = exp.company,
+                    subtitle = exp.role,
+                    hint = exp.location,
+                    richText = exp.description,
+                    thumbnail = exp.thumbnail,
+                    thumbnailAlt = exp.thumbnailAlt,
+                    url = exp.url,
+                    linkedin = exp.linkedin
+                )}}
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="timeline__section" data-navsection="education">
+        <div id="education"><!-- --></div>
+        <div class="timeline__section-title" data-stuckable>
+            {{__.timeline.education}}
+        </div>
+        <div class="timeline__section-content" data-section="education">
+            {% for edu in education %}
+                {{card.new(
+                    eyelet = edu.startDate + ' ~ ' + edu.endDate,
+                    title = edu.entity,
+                    subtitle = edu.subtitle,
+                    hint = edu.location,
+                    richText = edu.description,
+                    thumbnail = edu.thumbnail,
+                    thumbnailAlt = edu.thumbnailAlt,
+                    url = edu.url,
+                    linkedin = edu.linkedin
+                )}}
+            {% endfor %}
+        </div>
+    </section>
+
+</section>
+{%- endmacro %}

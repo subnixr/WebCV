@@ -1,0 +1,56 @@
+{% import 'icon.html.jinja' as icon %}
+{% macro timelineSelect(
+    name,
+    label,
+    options
+) -%}
+{% set variantCss = '--' + name %}
+<label class="select {{variantCss}}">
+    <span class="select__label">{{label}}</span>
+    <span class="select__input-wrapper">
+        <select name="{{name}}" data-timeline-select>
+            {% for opt in options %}
+                {% set defaulAttr = 'selected' if loop.index == 1 else '' %}
+                <option value="{{opt.value}}" {{defaultAttr}}>{{opt.label}}</option>
+            {% endfor %}
+        </select>
+        {{icon.new('chevron-down')}}
+    </span>
+</label>
+{%- endmacro %}
+
+{% macro theme(ts) -%}
+{% for t in ts %}
+    <button type="button" class="theme-cta theme-{{t}}" data-theme-target="{{t}}" aria-label="{{__.settings.theme.cta_aria_label}} {{t}}">
+        <span class="theme-cta__inner">{{t}}</span>
+    </button>
+{% endfor %}
+{%- endmacro %}
+
+{% macro new() -%}
+<div class="settings">
+    <section class="settings__section -timeline">
+        <h1 class="settings__section__title">
+            {{__.settings.timeline.title}}
+        </h1>
+        <div class="settings__section__content" data-component="settings/timeline">
+            {{timelineSelect('field', __.settings.timeline.field, [
+                { 'value': 'startDate', 'label': __.settings.timeline.startDate },
+                { 'value': 'endDate', 'label': __.settings.timeline.endDate }
+            ])}}
+            {{timelineSelect('order', __.settings.timeline.order, [
+                { 'value': 'desc', 'label': __.settings.timeline.desc },
+                { 'value': 'asc', 'label': __.settings.timeline.asc }
+            ])}}
+        </div>
+    </section>
+    <section class="settings__section -theme">
+        <h1 class="settings__section__title">
+            {{__.settings.theme.title}}
+        </h1>
+        <div class="settings__section__content" data-component="settings/theme">
+            {{theme(['light', 'dark', 'nord', 'neon'])}}
+        </div>
+    </section>
+</div>
+{%- endmacro %}
