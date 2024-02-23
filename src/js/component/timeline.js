@@ -10,8 +10,8 @@ export default class Timeline extends Component {
                 education: $DOC`script#data-education`,
             },
             tpl: {
-                experiences: `template[name="card-experience"]`,
-                education: `template[name="card-education"]`,
+                experiences: `script[name="card-experience"]`,
+                education: `script[name="card-education"]`,
             },
             section: {
                 experiences: `[data-section="experiences"]`,

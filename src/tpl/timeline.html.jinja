@@ -6,7 +6,7 @@
     languages
 ) -%}
 <section class="timeline" data-component="timeline">
-    <template name="card-experience">
+    <script type="text/plain" name="card-experience">
         {{card.new(
             eyelet = '${item.startDate} ~ ${item.endDate}',
             title = '${item.company}',
@@ -19,9 +19,9 @@
             linkedin = '${item.linkedin}',
             github = '${item.github}'
         )}}
-    </template>
+    </script>
 
-    <template name="card-education">
+    <script type="text/plain" name="card-education">
         {{card.new(
             eyelet = '${item.startDate} ~ ${item.endDate}',
             title = '${item.entity}',
@@ -34,7 +34,7 @@
             linkedin = '${item.linkedin}',
             github = '${item.github}'
         )}}
-    </template>
+    </script>
 
     <div id="skills"><!-- --></div>
     <section class="timeline__section" data-navsection="skills">
