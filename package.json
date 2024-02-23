@@ -24,7 +24,7 @@
     "babel-loader": "^9.1.3",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.10.0",
-    "csvt": "^0.1.3",
+    "csvt": "^0.1.4",
     "file-loader": "^6.2.0",
     "html-loader": "^5.0.0",
     "http-server": "^14.1.1",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "lodash.template": "^4.5.0",
-    "uuuf": "file:../uuuf"
+    "uuuf": "^0.1.4"
   }
 }
