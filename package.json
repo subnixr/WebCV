@@ -9,7 +9,8 @@
     "watch": "webpack --mode=development -w",
     "serve": "http-server dist & webpack --mode=development -w",
     "csvt:export": "csvt -l it,en,es export ./lang",
-    "csvt:update": "csvt update ./lang"
+    "csvt:update": "csvt update ./lang",
+    "csvt:import": "csvt import ./lang"
   },
   "babel": {
     "presets": [
@@ -39,6 +40,6 @@
   },
   "dependencies": {
     "lodash.template": "^4.5.0",
-    "uuuf": "^0.1.4"
+    "uuuf": "^0.1.5"
   }
 }
