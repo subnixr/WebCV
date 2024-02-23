@@ -1,9 +1,6 @@
 {
     "github_aria_label": "Github",
     "languages": {
-        "en": "English",
-        "es": "Spanish",
-        "it": "Italian",
         "listen_aria_label": "Listening",
         "read_aria_label": "Reading",
         "speak_aria_label": "Oral Production",

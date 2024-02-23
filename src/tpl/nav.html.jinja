@@ -38,7 +38,11 @@
             {% for lang in langs %}
                 {% if lang != page.lang %}
                     <li>
-                        <a class="{{'-current' if page.lang == lang else ''}}" href="/{{lang}}">
+                        <a
+                            class="{{'-current' if page.lang == lang else ''}}"
+                            href="/{{lang}}"
+                            aria-label="{{__.langs.original[lang]}}"
+                        >
                             {{flag.new(lang)}}
                         </a>
                     </li>
