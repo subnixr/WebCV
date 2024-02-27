@@ -314,13 +314,13 @@
         @include boot.print {
             max-width: 350px;
 
-            [data-lang] {
+            [data-lang-switch] {
                 .icon {
                     @include print.hide;
                 }
 
                 &::after {
-                    content: attr(data-lang);
+                    content: attr(data-lang-switch);
                 }
             }
         }
