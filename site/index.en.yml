@@ -1,18 +1,18 @@
 seo:
-  title: Roberto Mariani's CV
+  title: Roberto Mariani's Portfolio
   author: Roberto Mariani
   description: Roberto Mariani Curriculum Vitae
   opengraph: 
-    title: Roberto Mariani's CV
+    title: Roberto Mariani's Portfolio
     type: profile
     image: "/img/profile.png"
-    description: Roberto Mariani Curriculum Vitae
   keywords:
     - Mariani
     - Roberto
     - curriculum
     - vitae
     - cv
+    - portfolio
     - senior
     - developer
     - web
