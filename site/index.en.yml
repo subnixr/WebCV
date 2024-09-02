@@ -72,10 +72,10 @@ skills:
     - label: Team player
     - label: UI design
     - label: Full Remote
-    - label: Office365
+    - label: Office Suite
 
     hobbies:
-    - label: Music production
+    - label: DJ & Music production
     - label: Hiking
     - label: Kickboxing
     - label: Arch Linux
@@ -236,7 +236,7 @@ experiences:
   thumbnailAlt: Lifelike
   description: '
   <ul>
-  <li>Hybrid mobile webapp development (vanilla, Angular Js)</li>
+  <li>Hybrid mobile webapp development (vanilla, Angular Js, Phonegap)</li>
   <li>Internal applications development (VB.NET, ActionScript)</li>
   <li>Internal task automation</li>
   </ul>

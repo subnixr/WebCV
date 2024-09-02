@@ -75,7 +75,7 @@ skills:
     - label: Office365
 
     hobbies:
-    - label: Producción musical
+    - label: DJ y Producción musical
     - label: Senderismo
     - label: Kickboxing
     - label: Arch Linux
@@ -236,7 +236,7 @@ experiences:
   thumbnailAlt: Lifelike
   description: '
   <ul>
-  <li>Desarrollo de webapps móviles híbridas (vanilla, Angular Js)</li>
+  <li>Desarrollo de webapps móviles híbridas (vanilla, Angular Js, Phonegap)</li>
   <li>Desarrollo de aplicaciones internas (VB.NET, ActionScript)</li>
   <li>Automatización de tareas internas</li>
   </ul>
