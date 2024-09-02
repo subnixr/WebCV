@@ -2,14 +2,14 @@
 
 ```sh
 pyhton3 -m venv .venv
-activate venv/bin/activate
-pip install <requirements.txt
+. ./.venv/bin/activate
+pip install -r requirements.txt
 npm install
 ```
 
 # Run
 
 ```sh
-activate venv/bin/activate
+. ./.venv/bin/activate
 npm run watch
 ```
